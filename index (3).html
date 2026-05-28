@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festa do Miguel 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fff9f0;
+  --card: #ffffff;
+  --borda: #f0e8dc;
+  --borda2: #e0d0c0;
+  --acento: #d4763b;
+  --acento-claro: #fdf0e8;
+  --acento-escuro: #a85a28;
+  --texto: #2a1f18;
+  --texto2: #8a6e5c;
+  --verde: #3d7a52;
+  --verde-bg: #edf7f1;
+  --amarelo: #c4860a;
+  --amarelo-bg: #fdf8e8;
+  --vermelho: #c0392b;
+  --vermelho-bg: #fdf0ee;
+  --azul: #2d6fac;
+  --azul-bg: #eef4fb;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: var(--acento);
+  color: white;
+  padding: 2rem 1.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: 60px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.header-inner { position: relative; max-width: 860px; margin: 0 auto; }
+.header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+.header h1 span { font-style: italic; }
+.header p { font-size: 13px; opacity: 0.85; margin-bottom: 1rem; }
+.countdown-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.countdown-num { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; }
+
+/* NAV TABS */
+.nav {
+  background: white;
+  border-bottom: 1px solid var(--borda);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 14px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto2);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s;
+}
+.tab-btn:hover { color: var(--acento); }
+.tab-btn.ativo { color: var(--acento); border-bottom-color: var(--acento); }
+
+/* MAIN */
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* RESUMO CARDS */
+.resumo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.r-card {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform .15s;
+}
+.r-card:hover { transform: translateY(-1px); }
+.r-card .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--texto2);
+  margin-bottom: 6px;
+}
+.r-card .valor {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--texto);
+}
+.r-card.verde .valor { color: var(--verde); }
+.r-card.amarelo .valor { color: var(--amarelo); }
+.r-card.vermelho .valor { color: var(--vermelho); }
+
+/* SECOES */
+.secao {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.secao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--borda);
+}
+.secao-header h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto);
+}
+.secao-header small {
+  font-size: 11px;
+  color: var(--texto2);
+  display: block;
+  margin-top: 1px;
+}
+.btn-add {
+  background: var(--acento);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-add:hover { background: var(--acento-escuro); }
+
+/* TABELA */
+.tbl-header {
+  display: grid;
+  gap: 6px;
+  padding: 7px 16px;
+  background: #faf8f5;
+  border-bottom: 1px solid var(--borda);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--texto2);
+  font-weight: 500;
+}
+.tbl-row {
+  display: grid;
+  gap: 6px;
+  padding: 9px 16px;
+  align-items: center;
+  border-bottom: 1px solid var(--borda);
+  transition: background .1s;
+}
+.tbl-row:last-child { border-bottom: none; }
+.tbl-row:hover { background: #fdfbf8; }
+.tbl-total {
+  display: grid;
+  gap: 6px;
+  padding: 10px 16px;
+  background: #faf8f5;
+  font-size: 13px;
+  font-weight: 500;
+  border-top: 1px solid var(--borda);
+}
+
+.cols-confirmados { grid-template-columns: 1fr 80px 80px 80px 78px 32px; }
+.cols-compras     { grid-template-columns: 1fr 80px 80px 78px 32px; }
+.cols-comidas     { grid-template-columns: 1fr 80px 80px 78px 32px; }
+
+input[type=text].cell,
+input[type=number].cell {
+  width: 100%;
+  border: 1px solid var(--borda2);
+  border-radius: 6px;
+  padding: 4px 7px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  background: white;
+  color: var(--texto);
+  transition: border-color .15s;
+}
+input[type=text].cell:focus,
+input[type=number].cell:focus { outline: none; border-color: var(--acento); }
+
+select.cell {
+  width: 100%;
+  border: 1px solid var(--borda2);
+  border-radius: 6px;
+  padding: 4px 5px;
+  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
+  background: white;
+  color: var(--texto);
+  cursor: pointer;
+}
+select.cell:focus { outline: none; border-color: var(--acento); }
+
+.btn-del {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color .15s;
+}
+.btn-del:hover { color: var(--vermelho); }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 500;
+}
+.badge.pago    { background: var(--verde-bg);   color: var(--verde); }
+.badge.sinal   { background: var(--amarelo-bg); color: var(--amarelo); }
+.badge.falta   { background: var(--vermelho-bg);color: var(--vermelho); }
+.badge.comprar { background: var(--azul-bg);    color: var(--azul); }
+
+/* ABA CONFIGURAR */
+.config-card {
+  background: var(--acento-claro);
+  border: 1px solid var(--borda2);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.config-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--acento-escuro);
+  margin-bottom: 1rem;
+}
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.field label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--acento-escuro);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.field input {
+  width: 100%;
+  border: 1px solid var(--borda2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  background: white;
+  color: var(--texto);
+}
+.field input:focus { outline: none; border-color: var(--acento); }
+
+.btn-salvar {
+  background: var(--acento);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn-salvar:hover { background: var(--acento-escuro); }
+.btn-salvar:active { transform: scale(.97); }
+
+.msg-ok {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--verde);
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.msg-ok.show { opacity: 1; }
+
+.btn-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ABA VISÃO GERAL */
+.nota-card {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.nota-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--texto);
+}
+.nota-card textarea {
+  width: 100%;
+  border: 1px solid var(--borda2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--texto);
+  resize: vertical;
+  min-height: 80px;
+}
+.nota-card textarea:focus { outline: none; border-color: var(--acento); }
+
+.progresso-bar {
+  height: 8px;
+  background: var(--borda);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.progresso-fill {
+  height: 100%;
+  background: var(--acento);
+  border-radius: 10px;
+  transition: width .4s ease;
+}
+
+/* TABS CONTENT */
+.aba { display: none; }
+.aba.ativo { display: block; }
+
+/* RODAPÉ */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 11px;
+  color: var(--texto2);
+}
+
+@media(max-width:600px) {
+  .cols-confirmados { grid-template-columns: 1fr 65px 65px 65px 62px 24px; gap:3px; padding:8px 10px; }
+  .cols-compras     { grid-template-columns: 1fr 65px 65px 62px 24px; gap:3px; padding:8px 10px; }
+  .cols-comidas     { grid-template-columns: 1fr 65px 65px 62px 24px; gap:3px; padding:8px 10px; }
+  .resumo-grid      { grid-template-columns: repeat(2,1fr); }
+  .header h1        { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <h1>🎉 Festa do <span>Miguel Arruda</span></h1>
+    <p>20 de junho de 2026 · Painel compartilhado Ste & Felipe</p>
+    <div class="countdown-box">
+      <span>Faltam</span>
+      <span class="countdown-num" id="dias">—</span>
+      <span>dias</span>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="tab-btn ativo" onclick="trocar('visao',this)">Visão geral</button>
+    <button class="tab-btn" onclick="trocar('confirmados',this)">Itens confirmados</button>
+    <button class="tab-btn" onclick="trocar('compras',this)">Falta comprar</button>
+    <button class="tab-btn" onclick="trocar('comidas',this)">Comidas & bebidas</button>
+    <button class="tab-btn" onclick="trocar('config',this)">Configurar</button>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ABA: VISÃO GERAL -->
+<div class="aba ativo" id="aba-visao">
+
+  <div class="resumo-grid">
+    <div class="r-card">
+      <div class="label">Convidados</div>
+      <div class="valor" id="r-total">40</div>
+    </div>
+    <div class="r-card">
+      <div class="label">Crianças</div>
+      <div class="valor" id="r-criancas">17</div>
+    </div>
+    <div class="r-card">
+      <div class="label">Adultos</div>
+      <div class="valor" id="r-adultos">23</div>
+    </div>
+    <div class="r-card verde">
+      <div class="label">Já pago</div>
+      <div class="valor" id="r-pago">R$ 490</div>
+    </div>
+    <div class="r-card amarelo">
+      <div class="label">Falta pagar</div>
+      <div class="valor" id="r-falta">R$ 0</div>
+    </div>
+    <div class="r-card vermelho">
+      <div class="label">Total geral est.</div>
+      <div class="valor" id="r-total-geral">R$ 0</div>
+    </div>
+  </div>
+
+  <div class="nota-card">
+    <h3>Progresso dos pagamentos</h3>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--texto2)">
+      <span id="prog-label">Calculando...</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progresso-bar"><div class="progresso-fill" id="prog-fill" style="width:0%"></div></div>
+    <p style="font-size:11px;color:var(--texto2);margin-top:4px">Percentual do total já pago</p>
+  </div>
+
+  <div class="nota-card">
+    <h3>📝 Recados entre vocês dois</h3>
+    <textarea id="recados" placeholder="Escreve aqui recados, lembretes, combinados..." onchange="salvarRecados()"></textarea>
+    <div class="btn-row">
+      <button class="btn-salvar" onclick="salvarRecados()">Salvar recado</button>
+      <span class="msg-ok" id="msg-recados">✓ Salvo!</span>
+    </div>
+  </div>
+
+  <div class="nota-card">
+    <h3>✅ Lista de tarefas</h3>
+    <div id="tasks-lista"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input type="text" id="nova-task" placeholder="Adicionar tarefa..." style="flex:1;border:1px solid var(--borda2);border-radius:8px;padding:7px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--texto)" onkeydown="if(event.key==='Enter')addTask()">
+      <button class="btn-salvar" onclick="addTask()">+ Add</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ABA: CONFIRMADOS -->
+<div class="aba" id="aba-confirmados">
+  <div class="secao">
+    <div class="secao-header">
+      <div>
+        <h3>Itens com valor fechado</h3>
+        <small>Tudo que já tem fornecedor definido</small>
+      </div>
+      <button class="btn-add" onclick="addItem('conf')">+ Adicionar</button>
+    </div>
+    <div class="tbl-header cols-confirmados">
+      <span>Item</span><span>Qtd</span><span>Pago R$</span><span>Falta R$</span><span>Status</span><span></span>
+    </div>
+    <div id="lista-conf"></div>
+    <div class="tbl-total cols-confirmados" id="tot-conf">
+      <span>Total</span><span>—</span><span id="tc-pago">R$ 0</span><span id="tc-falta">R$ 0</span><span></span><span></span>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-salvar" onclick="salvarGrupo('conf')">Salvar</button>
+    <span class="msg-ok" id="msg-conf">✓ Salvo!</span>
+  </div>
+</div>
+
+<!-- ABA: COMPRAS -->
+<div class="aba" id="aba-compras">
+  <div class="secao">
+    <div class="secao-header">
+      <div>
+        <h3>O que ainda falta contratar / comprar</h3>
+        <small>Lembrancinhas, docinhos, decoração...</small>
+      </div>
+      <button class="btn-add" onclick="addItem('comp')">+ Adicionar</button>
+    </div>
+    <div class="tbl-header cols-compras">
+      <span>Item</span><span>Qtd est.</span><span>Pago R$</span><span>Status</span><span></span>
+    </div>
+    <div id="lista-comp"></div>
+    <div class="tbl-total cols-compras">
+      <span>Total</span><span>—</span><span id="cp-pago">R$ 0</span><span></span><span></span>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-salvar" onclick="salvarGrupo('comp')">Salvar</button>
+    <span class="msg-ok" id="msg-comp">✓ Salvo!</span>
+  </div>
+</div>
+
+<!-- ABA: COMIDAS -->
+<div class="aba" id="aba-comidas">
+  <div class="secao">
+    <div class="secao-header">
+      <div>
+        <h3>Comidas e bebidas</h3>
+        <small>Quantidades estimadas para 40 pessoas</small>
+      </div>
+      <button class="btn-add" onclick="addItem('com')">+ Adicionar</button>
+    </div>
+    <div class="tbl-header cols-comidas">
+      <span>Item</span><span>Qtd est.</span><span>Pago R$</span><span>Status</span><span></span>
+    </div>
+    <div id="lista-com"></div>
+    <div class="tbl-total cols-comidas">
+      <span>Total</span><span>—</span><span id="cm-pago">R$ 0</span><span></span><span></span>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-salvar" onclick="salvarGrupo('com')">Salvar</button>
+    <span class="msg-ok" id="msg-com">✓ Salvo!</span>
+  </div>
+</div>
+
+<!-- ABA: CONFIG -->
+<div class="aba" id="aba-config">
+  <div class="config-card">
+    <h3>Configurações da festa</h3>
+    <div class="config-grid">
+      <div class="field"><label>Data da festa</label><input type="date" id="cfg-data" value="2026-06-20"></div>
+      <div class="field"><label>Total de convidados</label><input type="number" id="cfg-total" value="40" min="1"></div>
+      <div class="field"><label>Crianças</label><input type="number" id="cfg-criancas" value="17" min="0"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-salvar" onclick="salvarConfig()">Salvar configurações</button>
+      <span class="msg-ok" id="msg-cfg">✓ Salvo!</span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Festa do Miguel Arruda · 20/06/2026 · feito com amor ✨
+</div>
+</div>
+
+<script>
+const KEY = 'festa_miguel_2026';
+
+const DEF = {
+  config: { data: '2026-06-20', total: 40, criancas: 17 },
+  conf: [
+    { item:'Salgadinhos (500 un)', qtd:'500 un', pago:150, falta:150, status:'sinal' },
+    { item:'Salão do prédio',      qtd:'1 dia',  pago:0,   falta:100, status:'falta' },
+    { item:'Garçons (3 pessoas)',  qtd:'3 pess.', pago:150, falta:300, status:'sinal' },
+    { item:'Chopp 50L',            qtd:'50 L',   pago:0,   falta:750, status:'falta' },
+    { item:'Bolo',                 qtd:'1 un',   pago:130, falta:130, status:'sinal' },
+    { item:'Montagem do bolo (no dia)', qtd:'—', pago:0,  falta:80,  status:'falta' },
+    { item:'Balões',               qtd:'decoraç.',pago:60,  falta:0,   status:'pago'  },
+  ],
+  comp: [
+    { item:'Docinhos',      qtd:'~120 un', pago:0, status:'comprar' },
+    { item:'Brownies',      qtd:'~34 un',  pago:0, status:'comprar' },
+    { item:'Lembrancinhas', qtd:'17 un',   pago:0, status:'comprar' },
+  ],
+  com: [
+    { item:'Refrigerante 2L',  qtd:'8 garrafas',    pago:0, status:'comprar' },
+    { item:'Suco 1L',          qtd:'8 caixas',      pago:0, status:'comprar' },
+    { item:'Água 500ml',       qtd:'80 un',         pago:0, status:'comprar' },
+    { item:'Caldo verde',      qtd:'~5 litros',     pago:0, status:'comprar' },
+    { item:'Caldo de feijão',  qtd:'~5 litros',     pago:0, status:'comprar' },
+    { item:'Caldo de mocotó',  qtd:'~5 litros',     pago:0, status:'comprar' },
+    { item:'Cachorro-quente',  qtd:'~57 un',        pago:0, status:'comprar' },
+    { item:'Batata frita',     qtd:'~5 kg',         pago:0, status:'comprar' },
+    { item:'Mini pizzas',      qtd:'~120 un',       pago:0, status:'comprar' },
+    { item:'Salgados de forno',qtd:'~160 un',       pago:0, status:'comprar' },
+  ],
+  recados: '',
+  tasks: []
+};
+
+let D = JSON.parse(JSON.stringify(DEF));
+
+function carregar() {
+  const s = localStorage.getItem(KEY);
+  if (s) { try { D = JSON.parse(s); } catch(e) {} }
+  aplicarConfig();
+  renderGrupo('conf');
+  renderGrupo('comp');
+  renderGrupo('com');
+  document.getElementById('recados').value = D.recados || '';
+  renderTasks();
+  atualizarResumo();
+}
+
+function salvar() { localStorage.setItem(KEY, JSON.stringify(D)); }
+
+function salvarConfig() {
+  D.config.data      = document.getElementById('cfg-data').value;
+  D.config.total     = parseInt(document.getElementById('cfg-total').value) || 40;
+  D.config.criancas  = parseInt(document.getElementById('cfg-criancas').value) || 17;
+  salvar(); aplicarConfig(); atualizarResumo(); flash('msg-cfg');
+}
+
+function aplicarConfig() {
+  const c = D.config;
+  document.getElementById('cfg-data').value     = c.data || '2026-06-20';
+  document.getElementById('cfg-total').value    = c.total || 40;
+  document.getElementById('cfg-criancas').value = c.criancas || 17;
+  atualizarCountdown();
+}
+
+function atualizarCountdown() {
+  const d = D.config.data || '2026-06-20';
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const festa = new Date(d + 'T00:00:00');
+  const diff = Math.round((festa - hoje) / 86400000);
+  const el = document.getElementById('dias');
+  el.textContent = diff < 0 ? 'foi!' : diff === 0 ? 'hoje!' : diff;
+}
+
+function atualizarResumo() {
+  const c = D.config;
+  const total    = c.total    || 40;
+  const criancas = c.criancas || 17;
+  document.getElementById('r-total').textContent    = total;
+  document.getElementById('r-criancas').textContent = criancas;
+  document.getElementById('r-adultos').textContent  = total - criancas;
+
+  let totalPago = 0, totalFalta = 0, totalGeral = 0;
+  [...D.conf, ...D.comp, ...D.com].forEach(i => {
+    totalPago  += parseFloat(i.pago)  || 0;
+    totalFalta += parseFloat(i.falta) || 0;
+  });
+  totalGeral = totalPago + totalFalta;
+
+  document.getElementById('r-pago').textContent       = 'R$ ' + Math.round(totalPago).toLocaleString('pt-BR');
+  document.getElementById('r-falta').textContent      = 'R$ ' + Math.round(totalFalta).toLocaleString('pt-BR');
+  document.getElementById('r-total-geral').textContent = 'R$ ' + Math.round(totalGeral).toLocaleString('pt-BR');
+
+  const pct = totalGeral > 0 ? Math.round((totalPago / totalGeral) * 100) : 0;
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = 'R$ ' + Math.round(totalPago).toLocaleString('pt-BR') + ' pago de R$ ' + Math.round(totalGeral).toLocaleString('pt-BR') + ' estimado';
+}
+
+function renderGrupo(g) {
+  const lista = D[g];
+  const el = document.getElementById('lista-' + g);
+  el.innerHTML = '';
+
+  if (g === 'conf') {
+    lista.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'tbl-row cols-confirmados';
+      row.innerHTML = `
+        <input class="cell" type="text" value="${esc(item.item)}" placeholder="Item" onchange="D.${g}[${i}].item=this.value">
+        <input class="cell" type="text" value="${esc(item.qtd)}"  placeholder="Qtd"  onchange="D.${g}[${i}].qtd=this.value">
+        <input class="cell" type="number" value="${item.pago||0}"  min="0" onchange="D.${g}[${i}].pago=parseFloat(this.value)||0;atualizarTotais('${g}');atualizarResumo()">
+        <input class="cell" type="number" value="${item.falta||0}" min="0" onchange="D.${g}[${i}].falta=parseFloat(this.value)||0;atualizarTotais('${g}');atualizarResumo()">
+        <select class="cell" onchange="D.${g}[${i}].status=this.value">
+          <option value="pago"    ${item.status==='pago'   ?'selected':''}>✅ Pago</option>
+          <option value="sinal"   ${item.status==='sinal'  ?'selected':''}>⚡ Sinal</option>
+          <option value="falta"   ${item.status==='falta'  ?'selected':''}>❌ Falta</option>
+          <option value="comprar" ${item.status==='comprar'?'selected':''}>🛒 Comprar</option>
+        </select>
+        <button class="btn-del" onclick="delItem('${g}',${i})">×</button>`;
+      el.appendChild(row);
+    });
+    // totais
+    const p = lista.reduce((s,i)=>s+(parseFloat(i.pago)||0),0);
+    const f = lista.reduce((s,i)=>s+(parseFloat(i.falta)||0),0);
+    document.getElementById('tc-pago').textContent  = 'R$ ' + Math.round(p).toLocaleString('pt-BR');
+    document.getElementById('tc-falta').textContent = 'R$ ' + Math.round(f).toLocaleString('pt-BR');
+
+  } else {
+    const cls = g==='comp' ? 'cols-compras' : 'cols-comidas';
+    const pagoId = g==='comp' ? 'cp-pago' : 'cm-pago';
+    lista.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'tbl-row ' + cls;
+      row.innerHTML = `
+        <input class="cell" type="text" value="${esc(item.item)}" placeholder="Item" onchange="D.${g}[${i}].item=this.value">
+        <input class="cell" type="text" value="${esc(item.qtd)}"  placeholder="Qtd"  onchange="D.${g}[${i}].qtd=this.value">
+        <input class="cell" type="number" value="${item.pago||0}" min="0" onchange="D.${g}[${i}].pago=parseFloat(this.value)||0;atualizarTotais('${g}');atualizarResumo()">
+        <select class="cell" onchange="D.${g}[${i}].status=this.value">
+          <option value="pago"    ${item.status==='pago'   ?'selected':''}>✅ Pago</option>
+          <option value="sinal"   ${item.status==='sinal'  ?'selected':''}>⚡ Sinal</option>
+          <option value="falta"   ${item.status==='falta'  ?'selected':''}>❌ Falta</option>
+          <option value="comprar" ${item.status==='comprar'?'selected':''}>🛒 Comprar</option>
+        </select>
+        <button class="btn-del" onclick="delItem('${g}',${i})">×</button>`;
+      el.appendChild(row);
+    });
+    const p = lista.reduce((s,i)=>s+(parseFloat(i.pago)||0),0);
+    document.getElementById(pagoId).textContent = 'R$ ' + Math.round(p).toLocaleString('pt-BR');
+  }
+}
+
+function atualizarTotais(g) { renderGrupo(g); }
+
+function addItem(g) {
+  if (g === 'conf') D[g].push({item:'',qtd:'',pago:0,falta:0,status:'falta'});
+  else              D[g].push({item:'',qtd:'',pago:0,status:'comprar'});
+  renderGrupo(g);
+}
+
+function delItem(g, i) {
+  D[g].splice(i,1);
+  renderGrupo(g);
+  atualizarResumo();
+}
+
+function salvarGrupo(g) { salvar(); flash('msg-' + g); }
+
+function salvarRecados() {
+  D.recados = document.getElementById('recados').value;
+  salvar(); flash('msg-recados');
+}
+
+function addTask() {
+  const inp = document.getElementById('nova-task');
+  const v = inp.value.trim();
+  if (!v) return;
+  D.tasks.push({ texto: v, feito: false });
+  inp.value = '';
+  salvar(); renderTasks();
+}
+
+function toggleTask(i) {
+  D.tasks[i].feito = !D.tasks[i].feito;
+  salvar(); renderTasks();
+}
+
+function delTask(i) {
+  D.tasks.splice(i,1);
+  salvar(); renderTasks();
+}
+
+function renderTasks() {
+  const el = document.getElementById('tasks-lista');
+  if (!D.tasks || D.tasks.length === 0) {
+    el.innerHTML = '<p style="font-size:12px;color:var(--texto2);padding:4px 0">Nenhuma tarefa ainda.</p>';
+    return;
+  }
+  el.innerHTML = D.tasks.map((t,i) => `
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--borda)">
+      <input type="checkbox" ${t.feito?'checked':''} onchange="toggleTask(${i})" style="cursor:pointer;accent-color:var(--acento)">
+      <span style="flex:1;font-size:13px;${t.feito?'text-decoration:line-through;color:var(--texto2)':''}">${esc(t.texto)}</span>
+      <button class="btn-del" onclick="delTask(${i})">×</button>
+    </div>`).join('');
+}
+
+function flash(id) {
+  const el = document.getElementById(id);
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+function trocar(aba, btn) {
+  document.querySelectorAll('.aba').forEach(el => el.classList.remove('ativo'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('ativo'));
+  document.getElementById('aba-' + aba).classList.add('ativo');
+  btn.classList.add('ativo');
+}
+
+carregar();
+setInterval(atualizarCountdown, 60000);
+</script>
+</body>
+</html>
